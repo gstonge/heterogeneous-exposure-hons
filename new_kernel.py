@@ -12,14 +12,6 @@ def exponential_integrand(tau, rho, beta, fm=1, K=1, alpha=2):
     scale = tau*rho*beta*fm
     return np.exp(-K/scale)*tau**(-alpha-1)
 
-# def exponential_integrand_test(tau,rho,alpha,beta,K=1):
-    # #instead of power-law participation time, exponential
-    # return np.exp(-K/(tau*rho*beta))*np.exp(-tau)
-
-# def exponential_integrand_asymptotic(tau,rho,alpha,beta,K=1):
-    # #instead of a power-law for P(\tau), uses asymptotic (frechet)
-    # return np.exp(-K/(tau*rho*beta))*alpha*tau**(-alpha-1)*np.exp(-tau**(-alpha))
-
 def exponential_pdf(kappa,scale=1):
     return np.exp(-kappa/scale)/scale
 
@@ -27,18 +19,12 @@ def weibull_integrand(tau, rho, beta, fm=1, K=1, alpha=2, shape=2):
     scale = tau*rho*beta*fm/gamma(1+1/shape) #mean = tau*rho*beta
     return np.exp(-(K/scale)**shape)*tau**(-alpha-1)
 
-# def weibull_integrand_asymptotic(tau,rho,alpha,beta,K=1,shape=2):
-    # return np.exp(-(K/(tau*rho*beta))**shape)*alpha*tau**(-alpha-1)*np.exp(-tau**(-alpha))
-
 def weibull_pdf(kappa,scale=1,shape=2):
     return (shape/scale)*(kappa/scale)**(shape-1)*np.exp(-(kappa/scale)**shape)
 
 def frechet_integrand(tau, rho, beta, fm=1, K=1, alpha=2, shape=2):
     scale = tau*rho*beta*fm/gamma(1-1/shape)
     return (1-np.exp(-(K/scale)**(-shape)))*tau**(-alpha-1)
-
-# def frechet_integrand_asymptotic(tau,rho,alpha,beta,K=1,shape=2):
-    # return (1-np.exp(-(K/(tau*rho*beta))**(-shape)))*alpha*tau**(-alpha-1)*np.exp(-tau**(-alpha))
 
 def frechet_pdf(kappa,scale=1,shape=2):
     return (shape/scale)*(kappa/scale)**(-shape-1)*np.exp(-(kappa/scale)**(-shape))
@@ -55,7 +41,6 @@ def kernel(rho, beta, fm=1, K=1, alpha=2., tmin=1, T=np.inf,
     Z = (tmin**(-alpha)-T**(-alpha))/alpha
     _args = (rho,beta,fm,K,alpha,*args)
     return quad(integrand,tmin,T,args=_args)[0]/Z
-#normalization not taken correctly into account!
 
 #same as kernel, but put beta first for integration and multiply by Q(beta)
 def kernel2(beta, Q, rho, fm=1, K=1, alpha=2.,tmin=1, T=np.inf,

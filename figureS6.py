@@ -105,7 +105,7 @@ axes[1].text(0.02, 1.05, r'(b) Phase diagram', fontsize=font_size+1,
              transform=axes[1].transAxes)
 
 
-plt.savefig('../manuscript/figs/FigS6.pdf')
+plt.savefig('./figs/FigS6.pdf')
 plt.show()
 
 

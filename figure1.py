@@ -2,8 +2,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-# color_list = ["#7fcdbb","#1d91c0","#0c2c84","#deb440","#d4748b","#c96942",
-              # "#1f6480"]
 color_list = ["#7fcdbb","#1d91c0","#0c2c84","#d4748b","#c96942","#deb440"]
 lw = 1.
 
@@ -75,9 +73,7 @@ leg2 = plt.legend(ncol=3, fontsize=font_size,
 # Axes label.
 ax.set_xlabel(r'Duration [hours]')
 ax.set_ylabel(r'Size [people]')
-# ax.text(-0.3, 1.25, r'(a)', fontsize=font_size+1,
-             # transform=ax.transAxes)
-# Scale.
+
 ax.set_xscale('log')
 ax.set_yscale('log')
 
@@ -89,7 +85,7 @@ ax.set_ybound(3,7000)
 ax.add_artist(leg1)
 
 # Save to file.
-fig.savefig('../manuscript/figs/Fig1.pdf')
+fig.savefig('figs/Fig1_left.pdf')
 plt.show()
 
 

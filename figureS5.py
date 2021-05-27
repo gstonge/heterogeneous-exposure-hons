@@ -32,7 +32,6 @@ color_dict = {1.1:"#c7e9b4", 1.15:"#7fcdbb", 1.5:"#0c2c84"}
 #left panel
 #-------------
 alpha_list = [key for key in color_dict]
-# alpha_list = [1.1,1.2,1.5]
 
 with open('./dat/bifurcation_mean_rescale_upper.pk', 'rb') as filename:
     results = pickle.load(filename)
@@ -75,5 +74,5 @@ axes[1].text(0.1, 0.85, r'(b)', fontsize=font_size+1,
              transform=axes[1].transAxes)
 # axes[1].set_ylim([0.1401,0.188])
 
-plt.savefig('../manuscript/figs/FigS5.pdf')
+plt.savefig('./figs/FigS5.pdf')
 plt.show()

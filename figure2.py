@@ -113,10 +113,11 @@ for alpha in reversed(alpha_list):
                     color=color_dict[alpha], zorder=1)
     if alpha == 1.5:
         axes[2].vlines(results[alpha]['beta_c'],0,0.455,
-                        ls='--',color=color_dict[alpha])
+                        ls='--',color="#1a1a1a")
         axes[2].vlines(results[alpha]['beta'][-1],0,
                        results[alpha]['I'][-1],
-                        ls='--',color=color_dict[alpha])
+                       ls=':',color="#1a1a1a")
+
 
 style = "Simple, tail_width=0.5, head_width=3, head_length=6"
 kw = dict(arrowstyle=style, color="#1a1a1a")
@@ -137,7 +138,7 @@ axes[2].text(0.02, 1.07, r'(c) Phase diagram', fontsize=font_size+1,
              transform=axes[2].transAxes)
 
 
-plt.savefig('../manuscript/figs/Fig2.pdf')
+plt.savefig('figs/Fig2.pdf')
 plt.show()
 
 

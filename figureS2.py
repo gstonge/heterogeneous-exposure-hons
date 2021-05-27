@@ -64,5 +64,5 @@ for col,(z,panel_label) in enumerate(zip(z_list,panel_label_list)):
         axes[col].set_ylabel(r"Infection probability $\theta_m$")
 
 
-plt.savefig(f'../manuscript/figs/FigS2.pdf')
+plt.savefig(f'./figs/FigS2.pdf')
 plt.show()

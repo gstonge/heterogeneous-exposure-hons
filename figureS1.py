@@ -84,5 +84,5 @@ for row,(pdf,integrand,shape) in enumerate(zip(pdf_list,integrand_list,
                  transform=axes[row][1].transAxes)
     labelLines(list(axes[row][1].get_lines()), zorder=2.5,align=True,
                    color='black',fontsize=font_size-1)
-plt.savefig(f'../manuscript/figs/FigS1.pdf')
+plt.savefig(f'./figs/FigS1.pdf')
 plt.show()

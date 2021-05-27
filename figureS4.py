@@ -32,9 +32,6 @@ plt.subplots_adjust(left=0.2, bottom=0.12, right=0.85,
 color_dict = {0.5:"#7fcdbb", 1.:"#1d91c0", 1.5:"#0c2c84"}
 
 #Beta distributions
-# Q1 = lambda beta: beta**(-0.5)*(1-beta)**(-0.5)/np.pi
-# betalim_1 = (0.,1.)
-# betalim_disp_1 = (0.01,0.99)
 Q1 = lambda beta: 8**2*beta*np.exp(-8*beta)
 betalim_1 = (0.,np.inf)
 betalim_disp_1 = (0.,1.5)
@@ -83,38 +80,15 @@ for ind, (Q,betalim,betalim_disp) in enumerate(zip(Qlist,betalimlist,
         with open(f'./dat/kernel_het_beta_{ind}.pk', 'rb') as filename:
             kernel_list = pickle.load(filename)
 
-    # if ind != 1:
-        # axes[ind][1].text(0.5, 0.15, r'$\theta_m(\rho) \propto \rho^\alpha$',
-                 # fontsize=font_size+1,
-                 # transform=axes[ind][1].transAxes)
-
-        # exponent = "{1/2}"
-        # label=fr"$\rho^{exponent}$"
-        # axes[ind][1].loglog(rho_list,1.2*rho_list**(alpha_list[0]-1), ':',
-                            # color="#1a1a1a",
-                      # label=label)
-        # exponent = "{1/5}"
-        # label=fr"$\rho^{exponent}$"
-        # axes[ind][1].loglog(rho_list,1.*rho_list**(1/5), ':',
-                            # color="#1a1a1a",
-                      # label=label)
     for alpha,kernel in zip(alpha_list,kernel_list):
         label=fr"$\alpha = {alpha}$" #change notation alpha -> alpha - 1
         axes[ind][1].loglog(rho_list,kernel, '-', color=color_dict[alpha],
                       label=label)
 
     if ind == 1:
-        # axes[ind][1].text(0.5, 0.15, r'$\theta_m(\rho) \propto \rho^{1/5}$',
-                 # fontsize=font_size+1,
-                 # transform=axes[ind][1].transAxes)
         axes[ind][1].loglog(rho_list,0.1*rho_list**1.2,'--',color='#1a1a1a',
                             label=r"$\propto \rho^\psi$")
 
-    # if ind != 2:
-        # exponent = "{3/2}"
-        # label=fr"$\rho^{exponent}$"
-        # axes[ind][1].loglog(rho_list,0.003*rho_list**(alpha_list[-1]-1),
-                       # '--', color="#1a1a1a", label=label)
     labelLines(list(axes[ind][1].get_lines()), zorder=2.5,align=True,
                color='black',fontsize=font_size-1)
     if ind == 1:
@@ -125,5 +99,5 @@ for ind, (Q,betalim,betalim_disp) in enumerate(zip(Qlist,betalimlist,
                           fontsize=font_size+1,
                  transform=axes[ind][1].transAxes)
 
-plt.savefig('../manuscript/figs/FigS4.pdf')
-# plt.show()
+plt.savefig('./figs/FigS4.pdf')
+plt.show()

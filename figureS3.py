@@ -78,5 +78,5 @@ axes[1].text(0.01, 1.05, r'(b) $1 \ll \tau_\mathrm{c} \approx \mathcal{T}$',
              fontsize=font_size+1,
              transform=axes[1].transAxes)
 
-plt.savefig(f'../manuscript/figs/FigS3.pdf')
+plt.savefig(f'./figs/FigS3.pdf')
 plt.show()
