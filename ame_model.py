@@ -3,7 +3,7 @@ from binomial_model import *
 @njit
 def initialize_Hmi(mmax,epsilon):
     Hmi = np.zeros((mmax+1,mmax+1))
-    for m in range(2,mmax+1):
+    for m in range(1,mmax+1):
         Hmi[m,0:m+1] = get_binom(m,epsilon)
     return Hmi
 
@@ -12,7 +12,7 @@ def initialize_Hmi(mmax,epsilon):
 def get_theta_bar(Hmi,thetami,pm,mvec,mmax):
     theta_bar = 0.
     norm = 0.
-    for m in range(2,mmax+1):
+    for m in range(1,mmax+1):
         ivec = np.arange(m)
         theta_bar += np.sum((m-ivec)*thetami[m,0:m]*Hmi[m,0:m])*pm[m]
         norm += np.sum((m-ivec)*Hmi[m,0:m])*pm[m]
@@ -38,24 +38,23 @@ def evolution(Hmi, Ik, pk, kvec, pm, mvec, thetami, mu):
 
     #calculate new Hmi
     Hmi_new = np.zeros(Hmi.shape)
-    for m in range(2,mmax+1):
+    for m in range(1,mmax+1):
+
         #get binomial matrices for recovery and infection
         Bmu = np.zeros((m+1,m+1))
         Bphi = np.zeros((m+1,m+1))
-        for l in range(1,m+1):
+        for l in range(m+1):
             Bmu[l,0:l+1] = get_binom(l,mu)
-        for l in range(m):
+        for l in range(m+1):
             Bphi[m-l,0:(m-l+1)] = get_binom(m-l,phimi[m,l])
+
         #apply ame
         for i in range(0,m+1):
-            Hmi_new[m,i] += (1-mu)**i*Hmi[m,i]
-            Hmi_new[m,i] -= (1-(1-phimi[m,i])**(m-i))*Hmi[m,i]
-            if i < m:
-                for j in range(1,m-i+1):
-                    Hmi_new[m,i] += Bmu[i+j,j]*Hmi[m,i+j]
-            if i > 0:
-                for j in range(1,i+1):
-                    Hmi_new[m,i] += Bphi[m-i+j,j]*Hmi[m,i-j]
+            for l in range(0,m-i+1): #rec
+                for j in range(0,i+1): #inf
+                    Hmi_new[m,i] += Bmu[i+l-j,l]*Bphi[m-(i+l-j),j]\
+                            *Hmi[m,i+l-j]
+
     #calculate new Ik
     Ik_new = (1-mu)*Ik + (1-Ik)*Thetak
     return (Hmi_new,Ik_new)

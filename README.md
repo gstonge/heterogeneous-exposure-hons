@@ -20,3 +20,9 @@ The following packages are used by certain modules:
 - pandas
 - matplotlib
 - matplotlib-label-lines
+
+Also, if you wish to reproduce the simulation, you will need the following
+packages:
+
+- [horgg](https://github.com/gstonge/horgg), for the generation of synthetic hypergraphs
+- [schon](https://github.com/gstonge/schon), for the simulation of contagions on higher-order networks
