@@ -22,10 +22,13 @@ def get_thetami_mat(mmax, beta, f=lambda m: 1, K=1, alpha=2, tmin=1, T=np.inf):
 
 @njit
 def get_binom(N,p):
-    pmf = np.zeros(N+1)
-    pmf[0] = (1-p)**N
-    for i in range(N):
-        pmf[i+1] = pmf[i]*(N-i)*p/((i+1)*(1-p))
+    if N > 0:
+        pmf = np.zeros(N+1)
+        pmf[0] = (1-p)**N
+        for i in range(N):
+            pmf[i+1] = pmf[i]*(N-i)*p/((i+1)*(1-p))
+    else:
+        pmf = np.array([1.])
     return pmf
 
 @njit
