@@ -74,12 +74,19 @@ with open('./dat/figureS6_bifurcation.pk', 'rb') as filename:
     results = pickle.load(filename)
 
 for alpha in reversed(alpha_list):
-    axes[1].plot(results[alpha]['beta'],results[alpha]['I'], '-',
+
+    if alpha == 1:
+        xline = [0.,results[alpha]['beta_c']]+sorted(list(results[alpha]['beta']))
+        yline = [0,0]+sorted(list(results[alpha]['I']))
+    else:
+        xline = results[alpha]['beta']
+        yline = results[alpha]['I']
+
+    axes[1].plot(xline,yline, '-',
                  color=color_dict[alpha])
-    if alpha != 0.5:
+    if alpha == 1.5:
         axes[1].plot((0.,results[alpha]['beta_c']),(0,0), '-',
                     color=color_dict[alpha], zorder=1)
-    if alpha == 1.5:
         axes[1].vlines(results[alpha]['beta_c'],0,0.388,
                         ls='--',color=color_dict[alpha])
         axes[1].vlines(results[alpha]['beta'][-1],0,
