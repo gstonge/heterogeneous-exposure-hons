@@ -49,7 +49,7 @@ for i in range(nb_graph):
     graph_generator = horgg.BCMS(klist,mlist)
     horgg.BCMS.seed(seed+i) #optional, if nothing is given, it is seeded with time
 
-    edge_list = graph_generator.get_graph(mcmc_step=N)
+    edge_list = graph_generator.get_random_graph(nb_steps=int(np.sum(klist)))
 
     cont = HeterogeneousExposure(edge_list,recovery_probability,alpha,T,beta,K)
     cont.seed(seed+i) #optional
