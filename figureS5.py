@@ -4,7 +4,6 @@ from matplotlib.colors import LinearSegmentedColormap
 import pickle
 import matplotlib.patches as patches
 from labellines import labelLine, labelLines
-from kernel import *
 
 #plot parameters
 font_size=10
