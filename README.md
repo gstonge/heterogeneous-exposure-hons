@@ -1,4 +1,5 @@
 # heterogeneous-exposure-hons
+[![DOI](https://zenodo.org/badge/364075936.svg)](https://zenodo.org/badge/latestdoi/364075936)
 
 Modules and scripts to model contagions on higher-order networks with heterogeneous exposure.
 
